@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Exchange Worksheet</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Ferrum: 0 BTC | 0 ETH</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#btc-address">BTC Address</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#eth-address">ETH Address</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#balances">Balances</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#exchange">Exchange</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#claim">Claim</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#cash">Cash Out</a>
+            </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="bg-primary text-white">
+      <div class="container text-center">
+        <h1>Ferrum Network</h1>
+        <p class="lead">Worksheet to exchange some BTC and ETC through the Ferrum network</p>
+        Enter Your Seed: <input id="get-address" value="ASDASDASDA99"></input> <button id="get-address-btn">Get Addresses</button>
+      </div>
+    </header>
+
+    <div class="left2">
+        <p class="trigger">Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2</p>
+    </div>
+
+    <div class="thisone">
+        <h4>Your Addresses</h4>
+        <small>
+            <ul id="address-list">
+
+            <li>one</li>
+            <li>2</li>
+          </ul>
+        </small>        
+      </div>
+
+    <section id="btc-address">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Register Bitcoin Address</h2>
+            <p class="lead">Registering addresses has the following steps:</p>
+            <ul>
+              <li>Create a secret BTC address</li>
+              <li>Claim your BTC address in Ferrum: <input type="text" id="btc-ext-address" value="1GpWd59iVM4MBDx6eCbNu2DnrPFjPcGWeF" /> </li>
+              <li>Address that you expect to send money to:  <input type="text" id="btc-int-address" value="AGBCC9CHED9UFGNSAGNWIIFLASZWKZBPFFVNTIDPCUWDZOKYJHXTHSZTAGTEKGELPAJVAVWCAE9HDVXCZAMBOHTWXY" /> </li>
+              <li> <button id="btc-claim-ext-address">Claim External Address</button> </li>
+              <ul>
+                <li><span> ASDASDSACACDFDSF9999</span></li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Claim Bitcoin</h2>
+            <p class="lead">You can claim <i>Fe(BTC)</i> by presenting proof (Your BTC transaction hash):</p>
+            <ul>
+              <li>Send Some BTC to one of the following Ferrum (Proof-of-burn) addresses in your BTC exchange </li>
+              <ul>
+                <li> <span>1WasadkjeejeEIIEIEIE3323rE</span> </li>
+              </ul>
+              <li>Claim your <i>Fe(BTC)</i> </li>
+              <ul>
+                <li> Present the proof transaction hash: <input type="text" /> <button>claim</button>   </li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="eth-address">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Register Ethereum Address</h2>
+            <p class="lead">Registering addresses has the following steps:</p>
+            <ul>
+              <li>Create a secret ETH address</li>
+              <li>Claim your ETH address: <input type="text" id="btc-ext-address"/> </li>
+              <li>Address that you expect to send money to:  <input type="text" id="btc-int-address"/> </li>
+              <li> <button id="btc-claim-ext-address">Claim External Address</button> </li>
+              <ul>
+                <li><span> ASDASDSACACDFDSF9999</span></li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Claim Ether</h2>
+            <p class="lead">You can claim <i>Fe(ETH)</i> by presenting proof (Your ETH transaction hash):</p>
+            <ul>
+              <li>Send Some ETH to one of the following Ferrum (Proof-of-burn) addresses in your ETH exchange </li>
+              <ul>
+                <li> <span>1WasadkjeejeEIIEIEIE3323rE</span> </li>
+              </ul>
+              <li>Claim your <i>Fe(ETH)</i> </li>
+              <ul>
+                <li> Present the proof transaction hash: <input type="text" /> <button>claim</button>   </li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="balances">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>You Have</h2>
+            <p class="lead">
+                <button type="button" class="btn btn-primary btn-circle btn-xl">0</button> BTC
+                <button type="button" class="btn btn-primary btn-circle btn-xl">0</button> ETH  
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exchange">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Request an Exchange</h2>
+            <p class="lead">You can request to exchange you <i>Fe(BTC)</i> with <i>Fe(ETH)</i> and vice versa:</p>
+            <ul>
+              <li>Send <input> </input> <select><option>BTC</option><option>ETH</option></select> </li>
+              <li>From <input> </input> </li>
+              <li> &nbsp;  &nbsp; To  <input> </input> </li> 
+              <li>After submitting this request, your balance will be reduced by above amout.</li>
+              <li> Roll-back address <input> </input> </li>
+              <li>Following condition is used to claim or roll-back</li>
+              <li>Receive <input> </input> <select><option>BTC</option><option>ETH</option></select> (Condition) </li>
+              <li> <button>Send Request</button> </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="claim">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2>Claim an Exchange (or Rollback)</h2>
+              <p class="lead">You can claim an exchange made for you:</p>
+              <ul>
+                <li>Claim <input> </input> <select><option>BTC</option><option>ETH</option></select> </li>
+                <li>Exchange Transaction Hash <input> </input> </li>
+                <li>To claim an exchange you must fulfil its <b>condition</b>.</li>
+                <li>We use <i>Proof in the Puding</i> by fulfilling condition here</li>
+                <li> Send <input> </input> <select><option>BTC</option><option>ETH</option></select> </li>
+                <li> From <input> </input> </li>
+                <li> To <input> </input> </li>
+                <li> <button>Send Request</button> </li>
+                <li> <a href="#balances"> Check your balance </a></li>
+              </ul>
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cash">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <h2>Cash Out BTC</h2>
+                <h2>Request an External Exchange</h2>
+                <p class="lead">You can request to exchange you <i>Fe(BTC)</i> with <i>Fe(ETH)</i> and vice versa:</p>
+                <ul>
+                  <li>Send <input> </input> <select><option>BTC</option><option>ETH</option></select> </li>
+                  <li>From <input> </input> </li>
+                  <li> &nbsp;  &nbsp; To  <input> </input> </li> 
+                  <li>After submitting this request, your balance will be reduced by above amout.</li>
+                  <li> Roll-back address <input> </input> </li>
+                  <li>Following condition is used to claim or roll-back</li>
+                  <li>Receive <input> </input> <select><option>BTC</option><option>ETH</option></select> (Condition) </li>
+                  <li>In &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; <input> </input></li>
+                  <li>Following condition is used to claim or roll-back</li>
+                  <li>Can be claimed / Rolled-back in seconds: <input> </input></li>
+                  <li> <button>Send Request</button> </li>
+                </ul>
+                  </div>
+            </div>
+          </div>
+        </section>
+  
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+
+    <script src="iota/dist/iota.js"></script>
+    <script src="js/manage.js"></script>
+
+  </body>
+
+</html>
