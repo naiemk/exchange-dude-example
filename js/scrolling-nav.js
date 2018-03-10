@@ -1,6 +1,9 @@
-(function($) {
-  "use strict"; // Start of use strict
+"use strict"; 
+var scrollerIsSet = { isIt: false }
 
+function setScroller() {
+  if (scrollerIsSet.isIt) return;
+  scrollerIsSet.isIt = true;
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -26,11 +29,14 @@
     offset: 54
   });
 
-  var top = $('.thisone').offset().top + 200;
+  var TOP_MARGIN = 50;
+
+  var top = $('.thisone').offset().top + TOP_MARGIN;
   $('.trigger').click(function () {
       $('.thisone').css('position','');
       $('.left2').toggle('slow',function(){
-          top = $('.thisone').offset().top + 200;
+          // top = $('.thisone').offset().top + TOP_MARGIN;
+          top = TOP_MARGIN;
       });
       
       
@@ -38,9 +44,10 @@
       
       $(document).scroll(function(){
           $('.thisone').css('position','');
-          top = $('.thisone').offset().top + 200;
+          // top = $('.thisone').offset().top + TOP_MARGIN;
+          top = TOP_MARGIN;
         $('.thisone').css('position','absolute');   
-        $('.thisone').css('top',Math.max(top + 200,$(document).scrollTop() + 200));
+        $('.thisone').css('top',Math.max(top + TOP_MARGIN,$(document).scrollTop() + TOP_MARGIN));
       });
-  
-})(jQuery); // End of use strict
+
+}

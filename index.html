@@ -24,7 +24,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top" id="header">Ferrum: 0 BTC | 0 ETH</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" id="header">Ferrum: <span class="balance-btc">0</span> BTC | <span class="balance-eth">0</span> ETH</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -62,16 +62,13 @@
     </header>
 
     <div class="left2">
-        <p class="trigger">Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2 Lorem...2</p>
+        <p class="trigger">   </p>
     </div>
 
-    <div class="thisone">
+    <div id="your-addresses" class="">
         <h4>Your Addresses</h4>
         <small>
             <ul id="address-list">
-
-            <li>one</li>
-            <li>2</li>
           </ul>
         </small>        
       </div>
@@ -84,12 +81,9 @@
             <p class="lead">Registering addresses has the following steps:</p>
             <ul>
               <li>Create a secret BTC address</li>
-              <li>Claim your BTC address in Ferrum: <input type="text" id="btc-ext-address" value="1GpWd59iVM4MBDx6eCbNu2DnrPFjPcGWeF" /> </li>
-              <li>Address that you expect to send money to:  <input type="text" id="btc-int-address" value="AGBCC9CHED9UFGNSAGNWIIFLASZWKZBPFFVNTIDPCUWDZOKYJHXTHSZTAGTEKGELPAJVAVWCAE9HDVXCZAMBOHTWXY" /> </li>
-              <li> <button id="btc-claim-ext-address">Claim External Address</button> </li>
-              <ul>
-                <li><span> ASDASDSACACDFDSF9999</span></li>
-              </ul>
+              <li>Claim your BTC address in Ferrum: <input type="text" id="btc-ext-address" value="1NYEU4GfFzEBNkgLjinNkt6A2HujzJL3Pz" /> </li>
+              <li>Address that you expect to send money to:  <input type="text" id="btc-int-address" value="EXBGQMSEWIER9PJRYXHWAXIRRNEWNAHOSQFSUQVRJXBUXLCLGSLE9QJGHVCWNVDUHMKOIRZWXWXTT9SOWNWAFNHRQW" /> </li>
+              <li> <button id="btc-claim-ext-address">Claim External Address</button> <span id="btc-external-address-claim-status"></span> </li>
             </ul>
           </div>
         </div>
@@ -99,13 +93,14 @@
             <h2>Claim Bitcoin</h2>
             <p class="lead">You can claim <i>Fe(BTC)</i> by presenting proof (Your BTC transaction hash):</p>
             <ul>
-              <li>Send Some BTC to one of the following Ferrum (Proof-of-burn) addresses in your BTC exchange </li>
+              <li>Send Some BTC to one of the Ferrum (Proof-of-burn) addresses in your BTC exchange </li>
+              <li>Claim <i>Fe(BTC)</i> </li>
               <ul>
-                <li> <span>1WasadkjeejeEIIEIEIE3323rE</span> </li>
-              </ul>
-              <li>Claim your <i>Fe(BTC)</i> </li>
-              <ul>
-                <li> Present the proof transaction hash: <input type="text" /> <button>claim</button>   </li>
+                <li> Amount: <input type="text" id="btc-claim-value" value="149328000" />  </li>
+                <li> Present the proof transaction hash: <input type="text" id="btc-claim-proof" value="BTC||e34428046a1109a34ba0f738dd404523a4697cb2b3030463d3f2fcd18b39b876"/>
+                  <button id="btc-claim-btn">claim</button> 
+                  <span id="btc-claim-status"></span>
+                  </li>
               </ul>
             </ul>
           </div>
@@ -121,28 +116,26 @@
             <p class="lead">Registering addresses has the following steps:</p>
             <ul>
               <li>Create a secret ETH address</li>
-              <li>Claim your ETH address: <input type="text" id="btc-ext-address"/> </li>
-              <li>Address that you expect to send money to:  <input type="text" id="btc-int-address"/> </li>
-              <li> <button id="btc-claim-ext-address">Claim External Address</button> </li>
-              <ul>
-                <li><span> ASDASDSACACDFDSF9999</span></li>
-              </ul>
+              <li>Claim your ETH address in Ferrum: <input type="text" id="eth-ext-address" value="8a641dcb295c4544d2587d86faf93567d286dade" /> </li>
+              <li>Address that you expect to send money to:  <input type="text" id="eth-int-address" value="HXDOKSEWY9AUGOZEQBVWZXEAALX9MKQCFJBTYAMJWKXGFRSXMEXVMKG9PQLZWLPULHGAIYXWWPS9RFOS9SURHRTBBZ" /> </li>
+              <li> <button id="eth-claim-ext-address">Claim External Address</button> <span id="eth-external-address-claim-status"></span> </li>
             </ul>
           </div>
         </div>
 
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Claim Ether</h2>
+            <h2>Claim <i>Fe(ETH)</i> </h2>
             <p class="lead">You can claim <i>Fe(ETH)</i> by presenting proof (Your ETH transaction hash):</p>
             <ul>
-              <li>Send Some ETH to one of the following Ferrum (Proof-of-burn) addresses in your ETH exchange </li>
-              <ul>
-                <li> <span>1WasadkjeejeEIIEIEIE3323rE</span> </li>
-              </ul>
+              <li>Send Some ETH to one of the Ferrum (Proof-of-burn) addresses in your ETH exchange </li>
               <li>Claim your <i>Fe(ETH)</i> </li>
               <ul>
-                <li> Present the proof transaction hash: <input type="text" /> <button>claim</button>   </li>
+                <li> Amount: <input type="text" id="eth-claim-value" value="2682365250000" />  </li>
+                <li> Present the proof transaction hash: <input type="text" id="eth-claim-proof" value="ETH||0xced0fdf2abbbf7a7de32b2a5ee835b88f4b208a5f73d3853230014c5018fe540"/>
+                  <button id="eth-claim-btn">claim</button> 
+                  <span id="eth-claim-status"></span>
+                  </li>
               </ul>
             </ul>
           </div>
@@ -156,8 +149,8 @@
           <div class="col-lg-8 mx-auto">
             <h2>You Have</h2>
             <p class="lead">
-                <button type="button" class="btn btn-primary btn-circle btn-xl">0</button> BTC
-                <button type="button" class="btn btn-primary btn-circle btn-xl">0</button> ETH  
+                <button type="button" class="btn btn-primary btn-circle btn-xl balance-btc">0</button> BTC
+                <button type="button" class="btn btn-primary btn-circle btn-xl balance-eth">0</button> ETH  
             </p>
           </div>
         </div>
@@ -171,14 +164,16 @@
             <h2>Request an Exchange</h2>
             <p class="lead">You can request to exchange you <i>Fe(BTC)</i> with <i>Fe(ETH)</i> and vice versa:</p>
             <ul>
-              <li>Send <input> </input> <select><option>BTC</option><option>ETH</option></select> </li>
-              <li>From <input> </input> </li>
-              <li> &nbsp;  &nbsp; To  <input> </input> </li> 
+              <li>Send <input id="exchange-value" value="0.2"> </input> <select id="exchange-unit"><option>BTC</option><option>ETH</option></select> </li>
+              <li>From <input id="exchange-from" value="EXBGQMSEWIER9PJRYXHWAXIRRNEWNAHOSQFSUQVRJXBUXLCLGSLE9QJGHVCWNVDUHMKOIRZWXWXTT9SOWNWAFNHRQW"> </input> </li>
+              <li> &nbsp;  &nbsp; To  <input id="exchange-to" value="WHL9U9SNGHTZHJJAKDSLWYOFNMYERTWI9WBVFDDXDHPJUNLYXVLYLLRWCWSZLLLBYTUQTDWPKUS9BLXYZAVSVDXIZC"> </input> </li> 
               <li>After submitting this request, your balance will be reduced by above amout.</li>
-              <li> Roll-back address <input> </input> </li>
+              <li> Roll-back address <input id="exchange-rollback" value="EXBGQMSEWIER9PJRYXHWAXIRRNEWNAHOSQFSUQVRJXBUXLCLGSLE9QJGHVCWNVDUHMKOIRZWXWXTT9SOWNWAFNHRQW"> </input> </li>
               <li>Following condition is used to claim or roll-back</li>
-              <li>Receive <input> </input> <select><option>BTC</option><option>ETH</option></select> (Condition) </li>
-              <li> <button>Send Request</button> </li>
+              <li>Receive <input id="exchange-condition-value" value="1"> </input> 
+                <select id="exchange-condition-unit"><option>ETH</option><option>BTC</option></select> (Condition) </li>
+              <li> <button id="exchange-btn">Send Request</button> </li> <span id="exchange-status"></span>
+              <li> Transaction hash (use this to claim or rollback) <small><b><span id="exchange-hash"></span></b></small> </input> 
             </ul>
           </div>
         </div>
@@ -192,15 +187,15 @@
               <h2>Claim an Exchange (or Rollback)</h2>
               <p class="lead">You can claim an exchange made for you:</p>
               <ul>
-                <li>Claim <input> </input> <select><option>BTC</option><option>ETH</option></select> </li>
-                <li>Exchange Transaction Hash <input> </input> </li>
+                <li>Claim <input id="claim-value" value="0.2"> </input> <select id="claim-unit"><option>BTC</option><option>ETH</option></select> </li>
+                <li>Send them to: <input id="claim-address" value="WHL9U9SNGHTZHJJAKDSLWYOFNMYERTWI9WBVFDDXDHPJUNLYXVLYLLRWCWSZLLLBYTUQTDWPKUS9BLXYZAVSVDXIZC"></input> </li>
+                <li>Exchange Transaction Hash <input id="claim-hash"> </input> </li>
                 <li>To claim an exchange you must fulfil its <b>condition</b>.</li>
                 <li>We use <i>Proof in the Puding</i> by fulfilling condition here</li>
-                <li> Send <input> </input> <select><option>BTC</option><option>ETH</option></select> </li>
-                <li> From <input> </input> </li>
-                <li> To <input> </input> </li>
-                <li> <button>Send Request</button> </li>
-                <li> <a href="#balances"> Check your balance </a></li>
+                <li> Send <input id="claim-send-value" value="1"> </input> <select id="claim-send-unit"><option>ETH</option><option>BTC</option></select> </li>
+                <li> From <input id="claim-send-address" value="HXDOKSEWY9AUGOZEQBVWZXEAALX9MKQCFJBTYAMJWKXGFRSXMEXVMKG9PQLZWLPULHGAIYXWWPS9RFOS9SURHRTBBZ"> </input> </li>
+                <li> To <input id="claim-to-address" value="EXBGQMSEWIER9PJRYXHWAXIRRNEWNAHOSQFSUQVRJXBUXLCLGSLE9QJGHVCWNVDUHMKOIRZWXWXTT9SOWNWAFNHRQW"> </input> </li>
+                <li> <button id="claim-btn">Send Request</button> <span id="claim-status"></span> </li>
               </ul>
               </div>
           </div>
@@ -215,17 +210,19 @@
                 <h2>Request an External Exchange</h2>
                 <p class="lead">You can request to exchange you <i>Fe(BTC)</i> with <i>Fe(ETH)</i> and vice versa:</p>
                 <ul>
-                  <li>Send <input> </input> <select><option>BTC</option><option>ETH</option></select> </li>
-                  <li>From <input> </input> </li>
-                  <li> &nbsp;  &nbsp; To  <input> </input> </li> 
+                  <li>Send <input id="cash-out-value" value="0.3"> </input> <select id="cash-out-unit"><option>BTC</option><option>ETH</option></select> </li>
+                  <li>From <input id="cash-out-from" value="EXBGQMSEWIER9PJRYXHWAXIRRNEWNAHOSQFSUQVRJXBUXLCLGSLE9QJGHVCWNVDUHMKOIRZWXWXTT9SOWNWAFNHRQW"> </input> </li>
+                  <li> &nbsp;  &nbsp; To  <input id="cash-out-to" value="999999999999999999999999999999999999999999999999999999999999999999999999999999999"> </input> </li> 
                   <li>After submitting this request, your balance will be reduced by above amout.</li>
-                  <li> Roll-back address <input> </input> </li>
+                  <li> Roll-back address <input id="cash-out-rollback" value="SUNPAXJYYVLUEZJRT9HEBHMOGAXRQNBAZKHP9DVXIW99LITQVCIPEKULWRTGPZQJHMPXXTMNYOWCDPFTYCARXLYFCW"> </input> </li>
                   <li>Following condition is used to claim or roll-back</li>
-                  <li>Receive <input> </input> <select><option>BTC</option><option>ETH</option></select> (Condition) </li>
-                  <li>In &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; <input> </input></li>
+                  <li>Receive in my External Bitcoin Address</li>
+                  <li>In &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; <input id="cash-out-external-address-from" value="BTC||15vzx3o7vjQzddWqvXWqDaiB8C5a1W54wL"> </input></li>
+                  <li>From &nbsp;  &nbsp; <input id="cash-out-external-address-to" value="BTC||1N3h3jrbDqKjNQiAue7X2Vm4sK36Lp3b83"> </input></li>
                   <li>Following condition is used to claim or roll-back</li>
-                  <li>Can be claimed / Rolled-back in seconds: <input> </input></li>
-                  <li> <button>Send Request</button> </li>
+                  <li>Can be claimed / Rolled-back in seconds: <input id="cash-out-timeout" value="3600"> </input></li>
+                  <li> <button id="cash-out-btn">Send Request</button> <span id="cash-out-status"></span> </li>
+                  <li> Transaction hash (use this to claim or rollback) <small><b><span id="cash-out-hash"></span></b></small> </input> 
                 </ul>
                   </div>
             </div>

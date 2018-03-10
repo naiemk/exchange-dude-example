@@ -9,26 +9,27 @@
   }
   
 .btn-circle.btn-xl {
-    width: 70px;
-    height: 70px;
+    width: 170px;
+    height: 170px;
     padding: 10px 16px;
     font-size: 24px;
     line-height: 1.33;
-    border-radius: 35px;
+    border-radius: 84px;
   }
   
   .left2 {
     width: 200px;
-    height: 150px;
+    height: 10px;
     border: solid black 1px;
     padding: 10px;
     display: none;
 }
 
-  .thisone {
+.thisone {
     width: 200px;
     margin-top: 10px;
     border: solid black 1px;
+    background-color: cornflowerblue;
     padding: 10px;
     word-wrap: break-word;
     font-size: xx-small;
