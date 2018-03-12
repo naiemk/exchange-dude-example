@@ -48,6 +48,9 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#cash">Cash Out</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#settings">Settings</a>
+            </li>
             </ul>
         </div>
       </div>
@@ -58,6 +61,8 @@
         <h1>Ferrum Network</h1>
         <p class="lead">Worksheet to exchange some BTC and ETC through the Ferrum network</p>
         Enter Your Seed: <input id="get-address" value="ASDASDASDA99"></input> <button id="get-address-btn">Get Addresses</button>
+        <p>Seed is a random value consisting of A-Z and 9. Shorter than 81 charachters. <br/>
+          This is your secret, keep it safe.</p>
       </div>
     </header>
 
@@ -84,6 +89,7 @@
               <li>Claim your BTC address in Ferrum: <input type="text" id="btc-ext-address" value="1NYEU4GfFzEBNkgLjinNkt6A2HujzJL3Pz" /> </li>
               <li>Address that you expect to send money to:  <input type="text" id="btc-int-address" value="EXBGQMSEWIER9PJRYXHWAXIRRNEWNAHOSQFSUQVRJXBUXLCLGSLE9QJGHVCWNVDUHMKOIRZWXWXTT9SOWNWAFNHRQW" /> </li>
               <li> <button id="btc-claim-ext-address">Claim External Address</button> <span id="btc-external-address-claim-status"></span> </li>
+                  <ul id="btc-external-address-claim-status-err"></ul>
             </ul>
           </div>
         </div>
@@ -97,9 +103,11 @@
               <li>Claim <i>Fe(BTC)</i> </li>
               <ul>
                 <li> Amount: <input type="text" id="btc-claim-value" value="149328000" />  </li>
+                <li> Hash of the external address claim transaction <input type="text" id="btc-claim-claimer-hash" value="" />  </li>
                 <li> Present the proof transaction hash: <input type="text" id="btc-claim-proof" value="BTC||e34428046a1109a34ba0f738dd404523a4697cb2b3030463d3f2fcd18b39b876"/>
                   <button id="btc-claim-btn">claim</button> 
                   <span id="btc-claim-status"></span>
+                  <ul id="btc-claim-status-err"></ul>
                   </li>
               </ul>
             </ul>
@@ -119,6 +127,7 @@
               <li>Claim your ETH address in Ferrum: <input type="text" id="eth-ext-address" value="8a641dcb295c4544d2587d86faf93567d286dade" /> </li>
               <li>Address that you expect to send money to:  <input type="text" id="eth-int-address" value="HXDOKSEWY9AUGOZEQBVWZXEAALX9MKQCFJBTYAMJWKXGFRSXMEXVMKG9PQLZWLPULHGAIYXWWPS9RFOS9SURHRTBBZ" /> </li>
               <li> <button id="eth-claim-ext-address">Claim External Address</button> <span id="eth-external-address-claim-status"></span> </li>
+              <ul id="eth-external-address-claim-status-err"></ul>
             </ul>
           </div>
         </div>
@@ -132,9 +141,11 @@
               <li>Claim your <i>Fe(ETH)</i> </li>
               <ul>
                 <li> Amount: <input type="text" id="eth-claim-value" value="2682365250000" />  </li>
+                <li> Hash of the external address claim transaction <input type="text" id="eth-claim-claimer-hash" value="" />  </li>
                 <li> Present the proof transaction hash: <input type="text" id="eth-claim-proof" value="ETH||0xced0fdf2abbbf7a7de32b2a5ee835b88f4b208a5f73d3853230014c5018fe540"/>
                   <button id="eth-claim-btn">claim</button> 
                   <span id="eth-claim-status"></span>
+                  <ul id="eth-claim-status-err"></ul>
                   </li>
               </ul>
             </ul>
@@ -173,7 +184,9 @@
               <li>Receive <input id="exchange-condition-value" value="1"> </input> 
                 <select id="exchange-condition-unit"><option>ETH</option><option>BTC</option></select> (Condition) </li>
               <li> <button id="exchange-btn">Send Request</button> </li> <span id="exchange-status"></span>
-              <li> Transaction hash (use this to claim or rollback) <small><b><span id="exchange-hash"></span></b></small> </input> 
+              <ul id="exchange-status-err"></ul>
+              <li> Transaction hash (use this to claim or rollback) <small><b><span id="exchange-hash"></span></b></small> </input>
+                </li>
             </ul>
           </div>
         </div>
@@ -195,7 +208,9 @@
                 <li> Send <input id="claim-send-value" value="1"> </input> <select id="claim-send-unit"><option>ETH</option><option>BTC</option></select> </li>
                 <li> From <input id="claim-send-address" value="HXDOKSEWY9AUGOZEQBVWZXEAALX9MKQCFJBTYAMJWKXGFRSXMEXVMKG9PQLZWLPULHGAIYXWWPS9RFOS9SURHRTBBZ"> </input> </li>
                 <li> To <input id="claim-to-address" value="EXBGQMSEWIER9PJRYXHWAXIRRNEWNAHOSQFSUQVRJXBUXLCLGSLE9QJGHVCWNVDUHMKOIRZWXWXTT9SOWNWAFNHRQW"> </input> </li>
-                <li> <button id="claim-btn">Send Request</button> <span id="claim-status"></span> </li>
+                <li> <button id="claim-btn">Send Request</button> <span id="claim-status"></span> 
+                  <ul id="claim-status-err"></ul>
+                </li>
               </ul>
               </div>
           </div>
@@ -221,10 +236,39 @@
                   <li>From &nbsp;  &nbsp; <input id="cash-out-external-address-to" value="BTC||1N3h3jrbDqKjNQiAue7X2Vm4sK36Lp3b83"> </input></li>
                   <li>Following condition is used to claim or roll-back</li>
                   <li>Can be claimed / Rolled-back in seconds: <input id="cash-out-timeout" value="3600"> </input></li>
-                  <li> <button id="cash-out-btn">Send Request</button> <span id="cash-out-status"></span> </li>
+                  <li> <button id="cash-out-btn">Send Request</button> <span id="cash-out-status"></span> 
+                    <ul id="cash-out-status-err"></ul>
+                  </li>
                   <li> Transaction hash (use this to claim or rollback) <small><b><span id="cash-out-hash"></span></b></small> </input> 
                 </ul>
                   </div>
+            </div>
+          </div>
+        </section>
+
+      <section id="settings">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <h2>Settings</h2>
+                <h3>Trusted / Proof of Burn Addresses</h3>
+                <p>Trusted addresses are required to ensure funds are parked in a place and cannot be double-spent. <br/>
+                   Ferrun can only read external networks and transactions on external networks might be slow to propagate.
+                    You need to send your funds to the proof of burn addresses (which will become unaccessible forever)
+                     or one of the trusted addresses which will be parked to ensure they cannot be double spent.
+                 </p>
+                 <ul>
+                   <li> Bitcoin Proof-of-Burn address: <b>NOT SET</b> <i>This is for testing only. Meaning you can use any BTC transaction
+                     as proof to claim Fe</i>
+                   </li>
+                   <li> Ether Proof-of-Burn address: <b>NOT SET</b> <i>This is for testing only. Meaning you can use any ETH transaction
+                     as proof to claim Fe</i>
+                   </li>
+                   <li> Fe Proof-of-Burn address: <b>NOT SET</b> <i>This is for testing only. Meaning you can use any Fe transaction
+                     to cash out</i>
+                   </li>
+                 </ul>
+              </div>
             </div>
           </div>
         </section>

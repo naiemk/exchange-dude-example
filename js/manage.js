@@ -18,7 +18,6 @@ var ETH_DISPLAY_RATIO = 1000000000000;
         seed: null,
         addresses: null,
         weight: 3,
-        externalAddressClaimHash: {},
         watchers: {},
         exchange: {},
         claim: {
@@ -37,7 +36,7 @@ var ETH_DISPLAY_RATIO = 1000000000000;
     var self = this;
 
     $("#get-address-btn").click(function(e) {
-        self.generateAddresses();
+        self.updateBalance();
     });
 
     self.txCurrencyToStr = function(val, idx) {
@@ -100,9 +99,9 @@ var ETH_DISPLAY_RATIO = 1000000000000;
     self.valueFor = function(value, unit) {
             var empty = iota.txCurrency.empty();
             if (unit === "BTC") {
-                empty[1] = value * BTC_DISPLAY_RATIO;
+                empty[1] = Math.floor(value * BTC_DISPLAY_RATIO);
             } else if (unit === "ETH") {
-                empty[2] = value * ETH_DISPLAY_RATIO;
+                empty[2] = Math.floor(value * ETH_DISPLAY_RATIO);
             }
             return empty;
     }
@@ -150,6 +149,8 @@ var ETH_DISPLAY_RATIO = 1000000000000;
 
     self.setSeed = function() {
         state.seed = $("#get-address").val();
+        $("#get-address").prop("readonly", true);
+        $("#get-address-btn").prop("disabled", true);
         state.seedTrytes = iota.pluginUtils.asciiToTrytes.toTrytes(self.seed);
     }
 
@@ -190,12 +191,11 @@ var ETH_DISPLAY_RATIO = 1000000000000;
         iota.fe.sendExternalAddressClaim(extSeed, 4, state.weight, {address: mappedAddress, security:2, key:0}, intAddress, 
             function(e, res) {
                 if (e) {
-                    console.error(e);
-                    return;
+                    return self.setError(statusId + "-err", e);
                 }
                 console.log("ExternalAddressClaim", res);
                 var bundleHash = res[0].hash;
-                state.externalAddressClaimHash[prefix] = bundleHash;
+                $("#" + prefix + "-claim-claimer-hash").val(bundleHash);
                 console.log("Bundle Hash Found", bundleHash);
                 self.watchTransaction(statusId, bundleHash);
             });
@@ -204,18 +204,14 @@ var ETH_DISPLAY_RATIO = 1000000000000;
     self.claimBitcoin = function(prefix) {
         self.setSeed();
         var statusId = "#" + prefix + "-claim-status";
-        var amount = Number($("#" + prefix + "-claim-value").val());
+        var amount = self.valueFor(Number($("#" + prefix + "-claim-value").val()), prefix.toUpperCase());
         var proof = $("#" + prefix + "-claim-proof").val();
         var intAddress = $("#" + prefix + "-int-address").val();
-        var claimHash = state.externalAddressClaimHash[prefix];
+        var claimHash = $("#" + prefix + "-claim-claimer-hash").val();
 
-        var value = iota.txCurrency.empty();
-        value[(prefix === 'btc') ? 1 : 2] = amount;
-
-        iota.fe.sendExternalClaim(state.seed, 4, state.weight, intAddress, value, claimHash, proof, function(e, res) {
+        iota.fe.sendExternalClaim(state.seed, 4, state.weight, intAddress, amount, claimHash, proof, function(e, res) {
             if (e) {
-                console.error(e);
-                return;
+                return self.setError(statusId + "-err", e);
             }
             console.log(res);
             var hash = res[0].hash;
@@ -229,8 +225,7 @@ var ETH_DISPLAY_RATIO = 1000000000000;
         fromInput = {address: state.exchange.from, security: 2, keyIndex: 0};
         iota.fe.sendExchangeTransaction(state.seed, 4, state.weight, fromInput, state.exchange.rollback, state.exchange.to, state.exchange.value, state.exchange.condition_value, function(e, res) {
             if (e) {
-                console.error(e);
-                return;
+                return self.setError("#exchange-status-err", e);
             }
             console.log("ECHANGE", res);
             self.watchTransaction("#exchange-status", res[0].hash)
@@ -248,7 +243,7 @@ var ETH_DISPLAY_RATIO = 1000000000000;
             state.claim.sendValue, state.claim.toAddress, state.claim.claimValue, 
             state.claim.claimAddress, state.claim.claimHash, function(e, res) {
             if (e) {
-                return console.error(e);
+                return self.setError("#claim-status-err", e);
             }
             console.log("ECHANGE_CLAIM", res);
             self.watchTransaction("#claim-status", res[0].hash)
@@ -272,7 +267,7 @@ var ETH_DISPLAY_RATIO = 1000000000000;
         iota.fe.sendExternalFutureExchange(state.seed, 4, state.weight, aliceInput, ex.feValue, 
             ex.aliceClaimerAddress, ex.bobClaimerAddress, ex.aliceExternalAddress, ex.bobExternalAddress, ex.futureTime, function(e, res) {
                 if (e) {
-                    return console.error(e);
+                    return self.setError("#cash-out-status-err", e);
                 }
                 console.log("EXTERNAL_FUTURE_EXCHANGE", res);
                 self.watchTransaction("#cash-out-status", res[0].hash)
@@ -282,6 +277,7 @@ var ETH_DISPLAY_RATIO = 1000000000000;
     self.watchTransaction = function(statusId, bundleHash) {
         var pinger = [null] 
         var updateIt = function() {
+            $(statusId + '-err').html(" ");
             $(statusId).removeClass("badge")
             $(statusId).addClass("badge");
             iota.api.getLatestInclusion([bundleHash], function(e, res) {
@@ -352,6 +348,20 @@ var ETH_DISPLAY_RATIO = 1000000000000;
     self.updateBalanceHTML = function() {
         $(".balance-btc").text(state.balance[1]/BTC_DISPLAY_RATIO);
         $(".balance-eth").text(state.balance[2]/ETH_DISPLAY_RATIO);
+    }
+
+    self.setError = function(id, e) {
+        if (!e) return;
+        console.error(e);
+        if (!e.errors) {
+            e.errors = [e];
+        }
+        var html = "<ul>";
+        e.errors.forEach(function(error) {
+            html += "<li class='text-danger'>" + error + "</li>";
+        })
+        html += "</ul>";
+        $(id).html(html);
     }
 
 })(jQuery);
